@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Піцерія{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #faf6f0;
+        }
+
+        nav {
+            background: #b22222;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+
+        .nav-right {
+            margin-left: auto;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-right form {
+            margin: 0;
+        }
+
+        .nav-right button {
+            background: none;
+            border: 1px solid white;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .price {
+            color: #b22222;
+            font-weight: bold;
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+<nav>
+    <a href="{% url 'menu:home' %}">Головна</a>
+    <a href="{% url 'menu:menu_list' %}">Меню</a>
+
+    <div class="nav-right">
+        {% if user.is_authenticated %}
+            <span>{{ user.username }}</span>
+            <form method="post" action="{% url "accounts:logout" %}">
+                {% csrf_token %}
+                <button type="submit">Вийти</button>
+            </form>
+        {% else %}
+            <a href="{% url "accounts:login" %}">Увійти</a>
+            <a href="{% url "accounts:register" %}">Реєстрація</a>
+        {% endif %}
+    </div>
+</nav>
+<main>
+    {% if messages %}
+        {% for message in messages %}
+            <div style="background: #d4edda; padding: 10px 15px; border-radius: 6px; margin-bottom: 15px">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    {% block content %}{% endblock %}
+</main>
+</body>
+</html>

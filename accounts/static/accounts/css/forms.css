@@ -1,0 +1,169 @@
+/* =========================================================
+   Shared form styling for login.html and register.html
+   Targets the HTML produced by Django's {{ form.as_p }}
+   ========================================================= */
+
+:root {
+    --form-bg:        #ffffff;
+    --form-border:    #d0d7de;
+    --form-text:      #1f2328;
+    --form-muted:     #57606a;
+    --form-accent:    #2f81f7;
+    --form-accent-hv: #1f6feb;
+    --form-error:     #cf222e;
+    --form-radius:    8px;
+    --form-shadow:    0 6px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* ---------- Page wrapper ---------- */
+/* We center the form card on screen. Remove max-width/centering
+   if you already center content inside menu/base.html. */
+.auth-page {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+
+/* ---------- Card ---------- */
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+    background: var(--form-bg);
+    color: var(--form-text);
+    border: 1px solid var(--form-border);
+    border-radius: var(--form-radius);
+    box-shadow: var(--form-shadow);
+    padding: 2rem 2rem 1.5rem;
+}
+
+.auth-card h1 {
+    margin: 0 0 1.5rem;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+/* ---------- Form layout ---------- */
+.auth-card form p {
+    margin: 0 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+/* ---------- Labels ---------- */
+.auth-card label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--form-text);
+}
+
+/* ---------- Inputs ---------- */
+.auth-card input[type="text"],
+.auth-card input[type="email"],
+.auth-card input[type="password"],
+.auth-card input[type="number"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.6rem 0.75rem;
+    font-size: 1rem;
+    color: var(--form-text);
+    background: #fff;
+    border: 1px solid var(--form-border);
+    border-radius: var(--form-radius);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.auth-card input:focus {
+    outline: none;
+    border-color: var(--form-accent);
+    box-shadow: 0 0 0 3px rgba(47, 129, 247, 0.25);
+}
+
+/* ---------- Help text (the password rules) ---------- */
+.auth-card .helptext {
+    font-size: 0.8rem;
+    color: var(--form-muted);
+    line-height: 1.4;
+    display: block;
+}
+
+/* If your form renders help text as <ul> (common for
+   UserCreationForm password rules), style it too. */
+.auth-card .helptext ul,
+.auth-card ul.helptext {
+    margin: 0.25rem 0 0;
+    padding-left: 1.1rem;
+}
+
+.auth-card .helptext li {
+    font-size: 0.8rem;
+    color: var(--form-muted);
+}
+
+/* ---------- Errors ---------- */
+.auth-card .errorlist {
+    list-style: none;
+    margin: 0.25rem 0 0;
+    padding: 0;
+    color: var(--form-error);
+    font-size: 0.85rem;
+}
+
+.auth-card .errorlist li {
+    margin: 0;
+}
+
+.auth-card input.error,
+.auth-card input:invalid {
+    border-color: var(--form-error);
+}
+
+/* ---------- Submit button ---------- */
+.auth-card button[type="submit"] {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background: var(--form-accent);
+    border: none;
+    border-radius: var(--form-radius);
+    cursor: pointer;
+    transition: background-color 0.15s ease, transform 0.05s ease;
+}
+
+.auth-card button[type="submit"]:hover {
+    background: var(--form-accent-hv);
+}
+
+.auth-card button[type="submit"]:active {
+    transform: translateY(1px);
+}
+
+/* ---------- Bottom link ("Вже маєте акаунт?") ---------- */
+.auth-card > p:last-of-type {
+    margin: 1.25rem 0 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--form-muted);
+}
+
+.auth-card > p:last-of-type a {
+    color: var(--form-accent);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.auth-card > p:last-of-type a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Error messages not tied to a field ---------- */
+.auth-card .errorlist.nonfield {
+    margin-bottom: 1rem;
+    padding: 0.6rem 0.8rem;
+    background: #ffebe9;
+    border: 1px solid #ffcecb;
+    border-radius: var(--form-radius);
+}
